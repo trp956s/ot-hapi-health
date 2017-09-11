@@ -29,6 +29,9 @@ exports.register = function(plugin, options, next) {
 
                 config.isHealthy(function(healthy) {
                     var outcome = healthy ? success : fail;
+                    if(healthy && healthy !== true){
+                       outcome.response = healthy;
+                    }
                     reply(outcome.response).code(outcome.code);
                 });
             },
